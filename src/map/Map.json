@@ -3,10 +3,10 @@
         "en": "Good start valley",
         "fr": "Valée du bon départ",
         "travel-time" : {
-            "Wardena": 0,
+            "Wardena": 1,
             "SmallClearing": 0,
-            "WardenaCastle": 0,
-            "Tavern-AtTheCrossroads": 0,
+            "WardenaCastle": 1,
+            "Tavern-AtTheCrossroads": 2.13,
             "DarkCave": 0,
             "CarlsPond": 0,
             "TheSleeper": 0,
