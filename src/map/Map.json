@@ -177,13 +177,13 @@
       "en": "Ancient altar",
       "fr": "Autel ancien",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0
+        "AbandonedTemple": 3.91,
+        "Newshore": 3.07,
+        "CoastalSwamp": 1.48,
+        "DarkLair": 1.66,
+        "FrozenCave": 4.25,
+        "DefendersCamp": 1.08,
+        "DevastatedLand": 2.42
       }
     },
     "ElmFarm": {
@@ -419,39 +419,39 @@
       "en": "Temple of time",
       "fr": "Temple du temps",
       "travel-time": {
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "Newshore": 2.23,
+        "CoastalSwamp": 3.35,
+        "DarkLair": 2.49,
+        "FrozenCave": 1.32,
+        "DefendersCamp": 2.85,
+        "DevastatedLand": 1.55,
+        "AncientAltar": 3.91
       }
     },
-    "TempleGates": {
-      "en": "Temple gates",
-      "fr": "Portes du temple",
+    "AbandonedTemple": {
+      "en": "Abandoned temple",
+      "fr": "Temple abandonné",
       "travel-time": {
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "Newshore": 2.23,
+        "CoastalSwamp": 3.35,
+        "DarkLair": 2.49,
+        "FrozenCave": 1.32,
+        "DefendersCamp": 2.85,
+        "DevastatedLand": 1.55,
+        "AncientAltar": 3.91
       }
     },
     "Newshore": {
       "en": "Newshore",
       "fr": "Newshore",
       "travel-time": {
-        "TempleGates": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0,
+        "AbandonedTemple": 2.23,
+        "CoastalSwamp": 1.73,
+        "DarkLair": 2.7,
+        "FrozenCave": 1.67,
+        "DefendersCamp": 2.07,
+        "DevastatedLand": 1.83,
+        "AncientAltar": 3.07,
         "Bayville": 13
       }
     },
@@ -459,65 +459,65 @@
       "en": "Coastal swamp",
       "fr": "Marécage côtier",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 3.35,
+        "Newshore": 1.73,
+        "DarkLair": 2.0,
+        "FrozenCave": 3.28,
+        "DefendersCamp": 0.9,
+        "DevastatedLand": 1.98,
+        "AncientAltar": 1.48
       }
     },
     "UnderwaterCave": {
       "en": "Underwater cave",
       "fr": "Grotte sous-marine",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 2.49,
+        "Newshore": 2.7,
+        "CoastalSwamp": 2.0,
+        "FrozenCave": 3.29,
+        "DefendersCamp": 1.09,
+        "DevastatedLand": 1.02,
+        "AncientAltar": 1.66
       }
     },
     "DarkLair": {
       "en": "Dark lair",
       "fr": "Tanière sombre",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 2.49,
+        "Newshore": 2.7,
+        "CoastalSwamp": 2.0,
+        "FrozenCave": 3.29,
+        "DefendersCamp": 1.09,
+        "DevastatedLand": 1.02,
+        "AncientAltar": 1.66
       }
     },
     "FrozenCave": {
       "en": "Frozen cave",
       "fr": "Caverne gelée",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 1.32,
+        "Newshore": 1.67,
+        "CoastalSwamp": 3.28,
+        "DarkLair": 3.29,
+        "DefendersCamp": 3.22,
+        "DevastatedLand": 2.16,
+        "AncientAltar": 4.25
       }
     },
     "LegendaryBlacksmithsDen": {
       "en": "Legendary blacksmith's den",
       "fr": "Repère du forgeron légendaire",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "DefendersCamp": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 1.32,
+        "Newshore": 1.67,
+        "CoastalSwamp": 3.28,
+        "DarkLair": 3.29,
+        "DefendersCamp": 3.22,
+        "DevastatedLand": 2.16,
+        "AncientAltar": 4.25
       }
     },
     "HeartOfGreed-Islands": {
@@ -554,39 +554,39 @@
       "en": "Defenders camp",
       "fr": "Compagnie des défenseurs",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DevastatedLand": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 2.85,
+        "Newshore": 2.07,
+        "CoastalSwamp": 0.9,
+        "DarkLair": 1.09,
+        "FrozenCave": 3.22,
+        "DevastatedLand": 1.4,
+        "AncientAltar": 1.08
       }
     },
     "DevastatedLand": {
       "en": "Devastated land",
       "fr": "Terre dévastée",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 1.55,
+        "Newshore": 1.83,
+        "CoastalSwamp": 1.98,
+        "DarkLair": 1.02,
+        "FrozenCave": 2.16,
+        "DefendersCamp": 1.4,
+        "AncientAltar": 2.42
       }
     },
     "MohrzugsDen": {
       "en": "Mohrzug's den",
       "fr": "Antre de Mohrzug",
       "travel-time": {
-        "TempleGates": 0,
-        "Newshore": 0,
-        "CoastalSwamp": 0,
-        "DarkLair": 0,
-        "FrozenCave": 0,
-        "DefendersCamp": 0,
-        "AncientAltar": 0
+        "AbandonedTemple": 1.55,
+        "Newshore": 1.83,
+        "CoastalSwamp": 1.98,
+        "DarkLair": 1.02,
+        "FrozenCave": 2.16,
+        "DefendersCamp": 1.4,
+        "AncientAltar": 2.42
       }
     }
   }
