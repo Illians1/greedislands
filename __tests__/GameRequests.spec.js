@@ -198,10 +198,11 @@ describe("gameclick request", () => {
   it("returns an error if player isn't arrived yet", async () => {
     let date = new Date(Date.now());
     date = new Date(date.getTime() + 30 * 60000);
-    await createPlayer({ time: date });
+    await createPlayer({ arrivedAt: date });
     const user = await Moralis.User.logIn("abcd", "efgh");
     const response = await clickUser(user);
+
     expect(response.status).toBe(403);
-    expect(response.body.ValidationErrors).toBe("you're not arrived yet");
+    expect(response.body.ValidationErrors).toBe("you're not arrived yet !");
   });
 });

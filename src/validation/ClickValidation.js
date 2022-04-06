@@ -29,6 +29,13 @@ const clickvalidation = async (req, res, next) => {
         .status(403)
         .send({ ValidationErrors: "you're not on this map !" });
     }
+    const arrivedAt = playerInfos[playerInfos.length - 1].attributes.arrivedAt;
+    const now = new Date(Date.now());
+    if (arrivedAt > now) {
+      return res
+        .status(403)
+        .send({ ValidationErrors: "you're not arrived yet !" });
+    }
   }
   next();
 };
