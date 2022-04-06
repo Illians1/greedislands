@@ -1,5 +1,6 @@
-const UserService = require("../user/UserService");
 const maps = require("../map/map.json");
+const MapService = require("../map/MapService");
+const UserService = require("../user/UserService");
 
 const clickvalidation = async (req, res, next) => {
   const request = req.body;
@@ -14,8 +15,20 @@ const clickvalidation = async (req, res, next) => {
   if (!request.y) {
     return res.status(400).send({ ValidationErrors: "y cannot be null" });
   }
-  if (!maps.hasOwnProperty(request.mapname)) {
+  const places = maps.places;
+  if (!places.hasOwnProperty(request.mapname)) {
     return res.status(404).send({ ValidationErrors: "this map doesn't exist" });
+  }
+  const playerInfos = await MapService.getPlayerInfos(request.userid);
+  if (!playerInfos) {
+    await UserService.createPlayer(request.userid);
+  } else {
+    const actualMap = playerInfos[playerInfos.length - 1].attributes.actualMap;
+    if (actualMap !== request.mapname) {
+      return res
+        .status(403)
+        .send({ ValidationErrors: "you're not on this map !" });
+    }
   }
   next();
 };

@@ -10,19 +10,22 @@ const userValidation = async (req, res, next) => {
       .status(400)
       .send({ ValidationErrors: "user's session token cannot be null" });
   }
+
   const user = await UserService.getUser(request.userid);
   const session = await UserService.getSession(request.usersessiontoken);
   if (!user.length || user.length > 1) {
-    return res.status(404).send({ message: "Error from userId" });
+    return res.status(404).send({ ValidationErrors: "error from userId" });
   }
   if (!session.length || session.length > 1) {
-    return res.status(404).send({ message: "Error from session token" });
+    return res
+      .status(404)
+      .send({ ValidationErrors: "error from session token" });
   }
   const ownerOfSession = session[0].attributes.user;
   if (ownerOfSession.id !== user[0].id) {
     return res
       .status(403)
-      .send({ message: "Session doesn't correspond to the user" });
+      .send({ ValidationErrors: "session doesn't correspond to the user" });
   }
   next();
 };

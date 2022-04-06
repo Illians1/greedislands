@@ -15,7 +15,7 @@ const clickUser = (user, options = {}) => {
   const userid = user.id;
   const session = user.attributes.sessionToken;
   let req = {
-    mapname: "GoodStartValley",
+    mapname: "Wardena",
     x: 68,
     y: 86,
     userid: userid,
@@ -49,6 +49,40 @@ const createUser = async (userinfos) => {
   }
 };
 
+const createPlayer = async (options = {}) => {
+  const user = await Moralis.User.logIn("abcd", "efgh");
+  const Player = Moralis.Object.extend("Player");
+  const player = new Player();
+  let req = {
+    user,
+    previousMap: "GoodStartValley",
+    actualMap: "Wardena",
+    arrivedAt: new Date(Date.now()),
+  };
+  if (options) {
+    Object.keys(options).forEach((key) => {
+      if (options[key] === "empty") {
+        req[key] = "";
+      } else if (options[key]) {
+        req[key] = options[key];
+      }
+    });
+  }
+  player.set("user", req.user);
+  player.set("previousMap", req.previousMap);
+  player.set("actualMap", req.actualMap);
+  player.set("arrivedAt", req.arrivedAt);
+  player.save();
+};
+
+const destroyPlayers = async () => {
+  const query = new Moralis.Query("Player");
+  players = await query.find({ useMasterKey: true });
+  for (const player of players) {
+    await player.destroy({ useMasterKey: true });
+  }
+};
+
 const destroyUserAndSessions = async (user) => {
   //Destroy User
   await user.destroy({ useMasterKey: true });
@@ -67,11 +101,13 @@ beforeAll(async () => {
     password: "efgh",
     email: "mail@mail",
   });
+  await createPlayer();
 });
 
 afterAll(async () => {
   const user = await Moralis.User.logIn("abcd", "efgh");
   await destroyUserAndSessions(user);
+  await destroyPlayers();
 });
 
 describe("user request", () => {
@@ -93,13 +129,13 @@ describe("user request", () => {
     const user = await Moralis.User.logIn("abcd", "efgh");
     const response = await clickUser(user, { userid: "abc" });
     expect(response.status).toBe(404);
-    expect(response.body.message).toBe("Error from userId");
+    expect(response.body.ValidationErrors).toBe("error from userId");
   });
   it("returns an error when session token is false", async () => {
     const user = await Moralis.User.logIn("abcd", "efgh");
     const response = await clickUser(user, { usersessiontoken: "abc" });
     expect(response.status).toBe(404);
-    expect(response.body.message).toBe("Error from session token");
+    expect(response.body.ValidationErrors).toBe("error from session token");
   });
   it("returns an error when session doesn't correspond to the user", async () => {
     const user = await Moralis.User.logIn("abcd", "efgh");
@@ -107,23 +143,18 @@ describe("user request", () => {
       usersessiontoken: "r:da460a85a47f138653b9a900ca0a3e7e",
     });
     expect(response.status).toBe(403);
-    expect(response.body.message).toBe(
-      "Session doesn't correspond to the user"
+    expect(response.body.ValidationErrors).toBe(
+      "session doesn't correspond to the user"
     );
   });
 });
 
-describe("clickmap request", () => {
-  it("returns 200 OK when request is valid", async () => {
-    const user = await Moralis.User.logIn("abcd", "efgh");
-    const response = await clickUser(user);
-    expect(response.status).toBe(200);
-  });
+describe("gameclick request", () => {
   it("returns x, y and mapname when request is valid", async () => {
     const user = await Moralis.User.logIn("abcd", "efgh");
     const response = await clickUser(user);
     expect(response.status).toBe(200);
-    expect(response.body.mapname).toBe("GoodStartValley");
+    expect(response.body.mapname).toBe("Wardena");
     expect(response.body.x).toBe(68);
     expect(response.body.y).toBe(86);
   });
@@ -150,5 +181,27 @@ describe("clickmap request", () => {
     const response = await clickUser(user, { mapname: "wrong map" });
     expect(response.status).toBe(404);
     expect(response.body.ValidationErrors).toBe("this map doesn't exist");
+  });
+  it("returns an error when the map doesn't correspond to actual map in database", async () => {
+    const user = await Moralis.User.logIn("abcd", "efgh");
+    const response = await clickUser(user, { mapname: "Bayville" });
+    expect(response.status).toBe(403);
+    expect(response.body.ValidationErrors).toBe("you're not on this map !");
+  });
+  it("returns an error if the map only correspond to an older record", async () => {
+    await createPlayer({ actualMap: "Bayville" });
+    const user = await Moralis.User.logIn("abcd", "efgh");
+    const response = await clickUser(user);
+    expect(response.status).toBe(403);
+    expect(response.body.ValidationErrors).toBe("you're not on this map !");
+  });
+  it("returns an error if player isn't arrived yet", async () => {
+    let date = new Date(Date.now());
+    date = new Date(date.getTime() + 30 * 60000);
+    await createPlayer({ time: date });
+    const user = await Moralis.User.logIn("abcd", "efgh");
+    const response = await clickUser(user);
+    expect(response.status).toBe(403);
+    expect(response.body.ValidationErrors).toBe("you're not arrived yet");
   });
 });

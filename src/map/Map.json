@@ -1,6 +1,6 @@
 {
-  "TravelTime": 120,
-  "Places": {
+  "travelTime": 120,
+  "places": {
     "GoodStartValley": {
       "en": "Good start valley",
       "fr": "Valée du bon départ",

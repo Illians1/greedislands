@@ -19,7 +19,20 @@ const getSession = async (token) => {
   return session;
 };
 
+const createPlayer = async (id) => {
+  const user = await getUser(id);
+  const Player = Moralis.Object.extend("Player");
+  const player = new Player();
+  player.set("user", user[0]);
+  player.set("previousMap", "GoodStartValley");
+  player.set("actualMap", "GoodStartValley");
+  const now = new Date(Date.now());
+  player.set("arrivedAt", now);
+  player.save();
+};
+
 module.exports = {
   getUser,
   getSession,
+  createPlayer,
 };
