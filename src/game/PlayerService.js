@@ -6,6 +6,14 @@ const appId = "HcMlKE1WVlOvCBfizEAdsbdRpOEToYG2WTQg4Uz9";
 const masterKey = "XEsYJj0UjjuBX3CtDrTLrZZCbTqWYRLJouRr464X";
 Moralis.start({ serverUrl, appId, masterKey });
 
+const getPlayerLocation = async (id) => {
+  const user = await UserService.getUser(id);
+  const query = new Moralis.Query("PlayerLocation");
+  query.equalTo("user", user[0]);
+  const playerLocation = await query.find({ useMasterKey: true });
+  return playerLocation;
+};
+
 const getPlayerInfos = async (id) => {
   const user = await UserService.getUser(id);
   const query = new Moralis.Query("Player");
@@ -15,5 +23,6 @@ const getPlayerInfos = async (id) => {
 };
 
 module.exports = {
+  getPlayerLocation,
   getPlayerInfos,
 };
