@@ -1,10 +1,5 @@
 const Moralis = require("moralis/node");
 
-const serverUrl = "https://zvgvvttxzfk4.usemoralis.com:2053/server";
-const appId = "HcMlKE1WVlOvCBfizEAdsbdRpOEToYG2WTQg4Uz9";
-const masterKey = "XEsYJj0UjjuBX3CtDrTLrZZCbTqWYRLJouRr464X";
-Moralis.start({ serverUrl, appId, masterKey });
-
 const getUser = async (id) => {
   const query = new Moralis.Query("_User");
   query.equalTo("objectId", id);
@@ -45,7 +40,7 @@ const createNewPlayer = async (id) => {
   player.set("divineSpeed", 0);
   player.set("treasureDetect", 0);
   player.save();
-  console.log("createNewPlayer");
+  return player;
 };
 
 module.exports = {

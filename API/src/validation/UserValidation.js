@@ -1,3 +1,4 @@
+const PlayerService = require("../game/PlayerService");
 const UserService = require("../user/UserService");
 
 const userValidation = async (req, res, next) => {
@@ -36,6 +37,12 @@ const userValidation = async (req, res, next) => {
       .status(403)
       .send({ ValidationErrors: "session doesn't correspond to the user" });
   }
+
+  const player = await PlayerService.getPlayerInfos(request.userid);
+  if (!player || player.length === 0) {
+    await UserService.createNewPlayer(request.userid);
+  }
+
   next();
 };
 

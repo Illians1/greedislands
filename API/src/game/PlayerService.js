@@ -1,11 +1,6 @@
 const Moralis = require("moralis/node");
 const UserService = require("../user/UserService");
 
-const serverUrl = "https://zvgvvttxzfk4.usemoralis.com:2053/server";
-const appId = "HcMlKE1WVlOvCBfizEAdsbdRpOEToYG2WTQg4Uz9";
-const masterKey = "XEsYJj0UjjuBX3CtDrTLrZZCbTqWYRLJouRr464X";
-Moralis.start({ serverUrl, appId, masterKey });
-
 const getPlayerLocation = async (id) => {
   const user = await UserService.getUser(id);
   const query = new Moralis.Query("PlayerLocation");
@@ -22,7 +17,18 @@ const getPlayerInfos = async (id) => {
   return player;
 };
 
+const updatePlayerLocation = async (id, previousMap, nextMap) => {
+  const user = await UserService.getUser(id);
+  const query = new Moralis.Query("PlayerLocation");
+  query.equalTo("user", user[0]);
+  const playerLocation = await query.first({ useMasterKey: true });
+  playerLocation.set("previousMap", previousMap);
+  playerLocation.set("actualMap", nextMap);
+  return playerLocation.save();
+};
+
 module.exports = {
   getPlayerLocation,
   getPlayerInfos,
+  updatePlayerLocation,
 };
